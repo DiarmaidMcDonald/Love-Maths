@@ -1,10 +1,29 @@
+
+document.addEventListener("DOMContentListener", function ()){
+
+    let buttons = document.getElementsByTagName('button');
+
+    for (let button of buttons) {
+        button.addEventListener("click", fucntion()) {
+            if (this.getAttribute("data-type") === "submit") {
+                alert("You Clicked Submit!");
+            } else {
+                let gameType = this.getAttribute("data-type");
+                alert(`You Clicked ${gameType}`);
+            }
+
+        }
+    }
+
+}
+
 function runGame() {
 
 }
-function checkAnswer(){
+function checkAnswer() {
 
 }
-function calculateCorrectAnswer(){
+function calculateCorrectAnswer() {
 
 }
 
@@ -29,5 +48,5 @@ function displayMultiplyQuestion() {
 }
 
 function displayDivideQuestion() {
-    
+
 }
