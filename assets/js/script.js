@@ -1,24 +1,23 @@
 
-document.addEventListener("DOMContentListener", function () ) {
+document.addEventListener("DOMContentListener", function () {
 
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", fucntion() ) {
-            if (this.getAttribute("data-type") === "submit") {
-                checkAnswer();
-            } else {
-                let gameType = this.getAttribute("data-type");
-                runGame(gameType);
-            }
-        
-
+        button.addEventListener("click", fucntion() {
+            if(this.getAttribute("data-type") === "submit") {
+            checkAnswer();
+        } else {
+            let gameType = this.getAttribute("data-type");
+            runGame(gameType);
         }
-    }
-     runGame("addition");
-   
 
-}
+
+    })
+    }
+runGame("addition");
+})
+
 
 /** 
  * The main game "loop", called when the script is first loaded
@@ -27,21 +26,21 @@ document.addEventListener("DOMContentListener", function () ) {
 function runGame(gameType) {
 
     // Creates two random numbers between 1 and 25.
-    let num1 = Math.floor(Math.random() * 25) +1;
-    let num2 = Math.floor(Math.random() * 25) +1;
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
     if (gameType === "addition") {
         displayAddtionQuestion(num1, num 2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
-        }
     }
+}
 
-    /**
-     * Check the answer against the first element in
-     * the returned calculateCorrectAnswer array
-     */
+/**
+ * Check the answer against the first element in
+ * the returned calculateCorrectAnswer array
+ */
 
 function checkAnswer() {
 
@@ -51,8 +50,10 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
         alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculateCorrectAnswer[0]}!`);
+        incrementWrongAnswers();
     }
 
     runGame(calculatedAnswer[1]);
@@ -64,31 +65,43 @@ function checkAnswer() {
  * directly from the DOM, and returns the correct answer.
  */
 function calculateCorrectAnswer() {
-      let operand1 = parseInt(documnet.getElementById('operand1').innerText);
-      let operand2 = parseInt(documnet.getElementById('operand2').innerText);
-      let operator = documnet.getElementById("operator").innerText;
+    let operand1 = parseInt(documnet.getElementById('operand1').innerText);
+    let operand2 = parseInt(documnet.getElementById('operand2').innerText);
+    let operator = documnet.getElementById("operator").innerText;
 
-      if(operator === "+") {
-        return[operand1 + operand2, "addition"];
-      } else {
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
-      }
-      }
+    }
 }
+
+/**
+ * The the correct score from the DOM and increments it by 1
+ */
 
 function incrementScore() {
 
+    let oldScore = parseInt(documnet.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
+
 }
 
+/**
+ * The the correct tally of incorrect answers from the DOM and increments it by 1
+ */
 function incrementWrongAnswers() {
+
+    let oldScore = parseInt(documnet.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
 function displayAddtionQuestion(operand1, operand 2) {
     document.getElementById('operand1').textContent = operand 1;
     document.getElementById('operand2').textContent = operand 2;
-    document.getElementById('operator').textContent = "+"; 
+    document.getElementById('operator').textContent = "+";
 
 }
 
